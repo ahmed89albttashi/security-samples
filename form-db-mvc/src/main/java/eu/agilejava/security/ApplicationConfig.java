@@ -48,7 +48,7 @@ import javax.ws.rs.core.Application;
         loginToContinue = @LoginToContinue(
                 loginPage = "/ui/login",
                 errorPage = "/ui/login?auth=-1"))
-@DeclareRoles({"foo", "bar", "kaz"})
+@DeclareRoles({"foo", "bar", "kaz","kaka"})
 @ApplicationPath("ui")
 public class ApplicationConfig extends Application {
 

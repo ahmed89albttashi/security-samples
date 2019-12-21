@@ -55,11 +55,22 @@ import javax.ejb.Startup;
 import javax.inject.Inject;
 import javax.sql.DataSource;
 import javax.security.enterprise.identitystore.Pbkdf2PasswordHash;
+//
+//@DataSourceDefinition(
+//    name = "java:global/MyDS",
+//    className = "org.h2.jdbcx.JdbcDataSource",
+//    url="jdbc:h2:mem:test;DB_CLOSE_ON_EXIT=FALSE"
+//)
 
 @DataSourceDefinition(
     name = "java:global/MyDS",
-    className = "org.h2.jdbcx.JdbcDataSource",
-    url="jdbc:h2:mem:test;DB_CLOSE_ON_EXIT=FALSE"
+    className = "org.postgresql.xa.PGXADataSource",
+    url="jdbc:postgresql://127.0.0.1:5432/krazo",
+    password = "oman",
+    user = "postgres",
+    databaseName = "krazo",
+    serverName = "localhost",
+    portNumber = 5432
 )
 @Singleton
 @Startup
@@ -88,12 +99,21 @@ public class DatabaseSetup {
         
         executeUpdate(dataSource, "INSERT INTO caller VALUES('duke', '" + passwordHash.generate("dance".toCharArray()) + "')");
         executeUpdate(dataSource, "INSERT INTO caller VALUES('kirk', '" + passwordHash.generate("kahn!".toCharArray()) + "')");
+        executeUpdate(dataSource, "INSERT INTO caller VALUES('ahmed', '" + passwordHash.generate("ee".toCharArray()) + "')");
         
         executeUpdate(dataSource, "INSERT INTO caller_groups VALUES('duke', 'foo')");
         executeUpdate(dataSource, "INSERT INTO caller_groups VALUES('duke', 'bar')");
         
         executeUpdate(dataSource, "INSERT INTO caller_groups VALUES('kirk', 'foo')");
         executeUpdate(dataSource, "INSERT INTO caller_groups VALUES('kirk', 'kaz')");
+        
+        
+        executeUpdate(dataSource, "INSERT INTO caller_groups VALUES('ahmed', 'foo')");
+        executeUpdate(dataSource, "INSERT INTO caller_groups VALUES('ahmed', 'bar')");
+        executeUpdate(dataSource, "INSERT INTO caller_groups VALUES('ahmed', 'kaz')");
+        executeUpdate(dataSource, "INSERT INTO caller_groups VALUES('ahmed', 'kaka')");
+        
+        
         
     }
     

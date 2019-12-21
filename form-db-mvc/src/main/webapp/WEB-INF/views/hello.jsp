@@ -19,6 +19,7 @@
         Web user has role "foo": <b>${hasFoo}</b><br/>
         Web user has role "bar": <b>${hasBar}</b><br/>
         Web user has role "kaz": <b>${hasKaz}</b><br/>
+        Web user has role "kaka": <b>${hasKaka}</b><br/>
         
         <form name="form" action="${mvc.basePath}/login" method="post">
             <p>

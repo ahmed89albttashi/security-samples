@@ -23,6 +23,7 @@
  */
 package eu.agilejava.security;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.mvc.Models;
 import javax.mvc.annotation.Controller;
@@ -46,6 +47,7 @@ public class HelloController {
     @Context
     private SecurityContext securityContext;
     
+    @RolesAllowed("kaka")
     @View("hello.jsp")
     @GET
     public void greet() {
@@ -57,5 +59,6 @@ public class HelloController {
         models.put("hasFoo", securityContext.isUserInRole("foo"));
         models.put("hasBar", securityContext.isUserInRole("bar"));
         models.put("hasKaz", securityContext.isUserInRole("kaz"));
+        models.put("hasKaka", securityContext.isUserInRole("kaka"));
     }
 }
